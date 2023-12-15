@@ -9,6 +9,9 @@
   --brand: #FFC100;
   --dark: #121113;
   --light: #ffffff;
+  --opaque:#19191979;
+  --bg-dark: #131313;
+
 }
 
 * {
