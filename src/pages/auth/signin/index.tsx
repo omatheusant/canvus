@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Form } from '@/components/Form/Form';
 
@@ -7,8 +8,9 @@ const SignIn = () => {
       <div className="z-10 w-full max-w-md overflow-hidden rounded-2xl border border-[--opaque]  shadow-xl">
         <div className="flex flex-col items-center justify-center space-y-3 border-b border-[--opaque] bg-[--bg-dark] px-4 py-6 pt-8 text-center sm:px-16">
           <Link href="/">
-            <img
+            <Image
               src="https://i.postimg.cc/CKTP2KMm/if-logo.jpg"
+              priority
               alt="Logo"
               width={50}
               height={150}
