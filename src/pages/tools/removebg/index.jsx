@@ -3,7 +3,7 @@ import { IoChevronBackSharp } from "react-icons/io5";
 import { MdFileDownload } from "react-icons/md";
 import Link from 'next/link';
 
-import removeBackground from '@imgly/background-removal/src/index';
+const { removeBackground } = require('@imgly/background-removal')
 
 const RemoveBg = () => {
   const [imageSrc, setImageSrc] = useState(null);
@@ -75,7 +75,7 @@ const RemoveBg = () => {
       >
         Remover Fundo
       </button>
-      {loading && <p>Loading...</p>}
+      {loading && <h2>Carregando...</h2>}
       {resultUrl && (
         <div>
           <img src={resultUrl} alt="Imagem sem fundo" />
