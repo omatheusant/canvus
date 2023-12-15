@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 
 import { fabric } from 'fabric';
 
-import { Header } from './components/Header';
-import { SideBar } from './components/SideBar';
-
-import { AddImage } from './components/tools/AddImage';
-import { AddText } from './components/tools/AddText';
-import { Resize } from './components/tools/Resize';
-import { Background } from './components/tools/Background';
-import { Eraser } from './components/tools/Eraser';
+import { Header } from '../../../components/Editor/Header';
+import { SideBar } from '../../../components/Editor/SideBar';
+import { AddImage } from '../../../components/Editor/tools/AddImage';
+import { AddText } from '../../../components/Editor/tools/AddText';
+import { Resize } from '../../../components/Editor/tools/Resize';
+import { Background } from '../../../components/Editor/tools/Background';
+import { Eraser } from '../../../components/Editor/tools/Eraser';
 
 const Editor = () => {
   const [canvas, setCanvas] = useState(null);
