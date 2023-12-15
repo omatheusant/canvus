@@ -30,7 +30,6 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
               router.push('/')
             }
           })
-
         } 
       }}
       className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
