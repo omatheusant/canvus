@@ -12,24 +12,24 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
 
   return (
     <form
-      onSubmit={async (e) => {
+      onSubmit={(e) => {
         e.preventDefault();
         setLoading(true);
         if (type === "login") {
-          const result = await signIn("credentials", {
+           signIn("credentials", {
             redirect: false,
             username: e.currentTarget.username.value,
             password: e.currentTarget.password.value,
+            // @ts-ignore
+          }).then(({error})=>{
+            if(error){
+              setLoading(false)
+              toast.error(error)
+            } else {
+              router.reload()
+              router.push('/')
+            }
           })
-          
-          console.log(result)
-          if(result?.ok) {
-            router.push('/')
-          } else {
-            setLoading(false)
-            toast.error("Usuário ou senha inválidos!")
-          }
-
         } 
       }}
       className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
