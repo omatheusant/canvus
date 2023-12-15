@@ -2,7 +2,7 @@ import { RxTransparencyGrid } from 'react-icons/rx';
 import { useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 
-const Background = ({ canvas }) => {
+export const Background = ({ canvas }) => {
  const [color, setColor] = useState('#fff');
  const [isOpen, setIsOpen] = useState(false);
 
@@ -36,5 +36,3 @@ const Background = ({ canvas }) => {
  </li>
  );
 };
-
-export default Background

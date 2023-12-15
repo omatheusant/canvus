@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { MdOutlineTextFields } from 'react-icons/md';
 import { fabric } from 'fabric'
 
-export default function AddText({ canvas }) {
+export function AddText({ canvas }) {
   
  const [isAdding, setIsAdding] = useState(false);
 

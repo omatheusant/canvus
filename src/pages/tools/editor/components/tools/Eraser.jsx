@@ -2,7 +2,7 @@ import { FaEraser } from 'react-icons/fa'
 import { fabric } from 'fabric'
 import { useEffect, useState } from 'react';
 
-const Eraser = ({ canvas }) => {
+export const Eraser = ({ canvas }) => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [brushSize, setBrushSize] = useState(50);
   
@@ -25,5 +25,3 @@ const Eraser = ({ canvas }) => {
     </li>
   )
 }
-
-export default Eraser

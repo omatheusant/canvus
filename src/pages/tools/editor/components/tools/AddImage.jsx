@@ -1,7 +1,7 @@
 import { fabric } from 'fabric'
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
-const AddImage = ({ canvas }) => {
+export const AddImage = ({ canvas }) => {
  const handleImage = (e) => {
  const reader = new FileReader();
  reader.onload = (event) => {
@@ -41,5 +41,3 @@ const AddImage = ({ canvas }) => {
 </li>
  );
 }
-
-export default AddImage
