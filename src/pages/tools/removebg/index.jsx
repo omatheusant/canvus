@@ -75,7 +75,7 @@ const RemoveBg = () => {
       >
         Remover Fundo
       </button>
-      {loading && <img src="/loading.svg" alt="loading gif" />}
+      {loading && <img src="static/images/loading.svg" alt="loading gif" />}
       {resultUrl && (
         <div>
           <img src={resultUrl} alt="Imagem sem fundo" />
