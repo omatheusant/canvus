@@ -26,7 +26,6 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
               setLoading(false)
               toast.error(error)
             } else {
-              router.reload()
               router.push('/')
             }
           })
