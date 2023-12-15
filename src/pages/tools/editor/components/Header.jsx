@@ -1,6 +1,6 @@
 import { CiSaveDown2 } from "react-icons/ci";
 
-export const Header = ({ canvas }) => {
+const Header = ({ canvas }) => {
   const handleDownload = () => {
     const link = document.createElement('a');
     link.download = 'kit.png';
@@ -17,3 +17,5 @@ export const Header = ({ canvas }) => {
     </div>
   );
  }
+
+ export default Header

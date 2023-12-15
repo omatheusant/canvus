@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { GiResize } from 'react-icons/gi'
 
-export const Resize = ({ setSize }) => {
+const Resize = ({ setSize }) => {
   const [showModal, setShowModal] = useState(false);
   const [newSize, setNewSize] = useState({ width: 1700, height: 1200 });
 
@@ -51,3 +51,5 @@ export const Resize = ({ setSize }) => {
     </li>
   );
 };
+
+export default Resize
