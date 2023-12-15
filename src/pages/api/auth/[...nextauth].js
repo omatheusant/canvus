@@ -18,8 +18,7 @@ export const authOptions = {
           user?.password === credentials?.password) {
           return user
         }
-
-        throw new Error
+        throw new Error('Usuário ou senha inválido')
       }
     })
   ],
