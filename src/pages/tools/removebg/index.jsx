@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import imglyRemoveBackground from '@imgly/background-removal';
-
 import { IoChevronBackSharp } from "react-icons/io5";
 import { MdFileDownload } from "react-icons/md";
 import Link from 'next/link';
 
+const { removeBackground } = require('@imgly/background-removal')
 
 const RemoveBg = () => {
   const [imageSrc, setImageSrc] = useState(null);
@@ -34,7 +33,7 @@ const RemoveBg = () => {
     setLoading(true);
 
     try {
-      const blob = await imglyRemoveBackground(imageSrc, {
+      const blob = await removeBackground(imageSrc, {
         output: {quality: 1.0}
       });
       const url = URL.createObjectURL(blob);
