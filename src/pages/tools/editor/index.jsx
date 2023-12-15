@@ -70,7 +70,7 @@ const Editor = () => {
  }, [canvas]);
 
  return (
-   <>
+   <div>
      <Header canvas={canvas} />
      <SideBar>
        <Resize setSize={setSize} />
@@ -80,10 +80,10 @@ const Editor = () => {
        <Background canvas={canvas} />
      </SideBar>
 
-     <div className='w-full mt-10 flex justify-center z-0'>
+     <div className='w-full mt-10 flex justify-center h-screen items-center z-0'>
        <canvas id="canvas"></canvas>
      </div>
-   </>
+   </div>
  );
 }
 

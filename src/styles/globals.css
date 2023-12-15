@@ -8,18 +8,17 @@
   --bg-color: #191919;
   --brand: #FFC100;
   --dark: #121113;
-  --light: #E9FAE3;
+  --light: #ffffff;
 }
 
 * {
   font-family: 'Saira', sans-serif;
   margin: 0;
-  box-sizing: border-box;
   padding: 0;
 }
 
-body, html{
-  height: 100vh;
+body {
+  min-height: 100vh;
   background-color: var(--bg-color);
   overflow-x: hidden;
 }
