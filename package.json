@@ -3,17 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "prisma generate && next dev",
+    "build": "prisma generate && prisma db push && next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "npx patch-package"
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "^2.0.9",
     "@imgly/background-removal": "^1.2.1",
+    "@prisma/client": "^5.7.0",
+    "bcrypt": "^5.1.1",
     "fabric": "^5.3.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
+    "mongodb": "^6.3.0",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
     "patch-package": "^8.0.0",
@@ -25,6 +29,7 @@
     "react-icons": "^4.12.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -33,6 +38,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "postcss": "^8",
+    "prisma": "^5.7.0",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
