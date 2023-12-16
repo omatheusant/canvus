@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 import LoadingDots from "@/components/shared/LoadingDots";
 import toast, {Toaster} from "react-hot-toast";
 import Link from "next/link";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export const Form = ({ type }: { type: "login" | "register" }) => {
 
@@ -26,6 +26,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
               setLoading(false)
               toast.error(error)
             } else {
+              router.refresh()
               router.push('/')
             }
           })
