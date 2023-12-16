@@ -1,36 +1,43 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { useForm, SubmitHandler } from "react-hook-form"
 import LoadingDots from "@/components/shared/LoadingDots";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from 'next/router';
+
+type FormInput = {
+  username: string,
+  password: string
+}
 
 export const Form = ({ type }: { type: "login" | "register" }) => {
 
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormInput>()
+
+  const onSubmit: SubmitHandler<FormInput> = async (data) => {
+    const res = await signIn("credentials", {
+      username: data.username,
+      password: data.password,
+      redirect: false,
+      callbackUrl: `${window.location.origin}`,
+    })
+    if(res?.error) {
+      toast.error(res.error)
+    };
+    if(res?.url) router.push('/')
+  }
+
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setLoading(true);
-        if (type === "login") {
-          signIn("credentials", {
-            redirect: false,
-            username: e.currentTarget.username.value,
-            password: e.currentTarget.password.value,
-            // @ts-ignore
-          }).then(({ error }) => {
-            if (!error) {
-              router.push('/')
-            } else {
-              setLoading(false)
-              toast.error(error)
-            }
-          })
-        }
-      }}
+      onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
     >
       <Toaster />
@@ -43,9 +50,9 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
         </label>
         <input
           id="username"
-          name="username"
           type="username"
           placeholder="Digite seu usuário..."
+          {...register("username", {required: true})}
           autoComplete="username"
           required
           className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
@@ -60,9 +67,9 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
         </label>
         <input
           id="password"
-          name="password"
           type="password"
           placeholder="Digite sua senha..."
+          {...register("password", { required: true })}
           required
           className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
         />
