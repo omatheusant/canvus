@@ -23,6 +23,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
   } = useForm<FormInput>()
 
   const onSubmit: SubmitHandler<FormInput> = async (data) => {
+    setLoading(true)
     const res = await signIn("credentials", {
       username: data.username,
       password: data.password,
@@ -30,6 +31,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
       callbackUrl: `${window.location.origin}`,
     })
     if(res?.error) {
+      setLoading(false)
       toast.error(res.error)
     };
     if(res?.url) router.push('/')
