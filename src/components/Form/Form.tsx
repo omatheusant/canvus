@@ -14,13 +14,13 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        router.refresh()
         setLoading(true);
         if (type === "login") {
           signIn("credentials", {
             redirect: false,
             username: e.currentTarget.username.value,
             password: e.currentTarget.password.value,
-            callbackUrl: '/'
             // @ts-ignore
           }).then(({ error }) => {
             if (error) {
