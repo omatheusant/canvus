@@ -10,10 +10,6 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    router.refresh()
-  }, [])
-
   return (
     <form
       onSubmit={(e) => {
@@ -24,6 +20,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
             redirect: false,
             username: e.currentTarget.username.value,
             password: e.currentTarget.password.value,
+            callbackUrl: '/'
             // @ts-ignore
           }).then(({ error }) => {
             if (error) {
