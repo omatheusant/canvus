@@ -6,10 +6,6 @@ export const authOptions = {
   providers: [
     Credentials({
       name: "Credentials",
-      credentials: {
-        username: { label: "Usuário", type: "text", placeholder: "Digite seu usuário..." },
-        password: { label: "Senha", type: "password", placeholder: "Digite sua senha..." }
-      },
       async authorize(credentials) {
         const user = { id: '1', name: 'Ismafer Ferramentas', username: 'ismafer', password: 'admin123' }
 
