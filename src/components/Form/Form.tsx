@@ -1,5 +1,5 @@
 import {  useState } from "react";
-import { useSession, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import LoadingDots from "@/components/shared/LoadingDots";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
@@ -9,11 +9,6 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
 
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { status } = useSession()
-
-  if(status === 'authenticated'){
-    router.push('/')
-  }
 
   return (
     <form
@@ -27,11 +22,11 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
             password: e.currentTarget.password.value,
             // @ts-ignore
           }).then(({ error }) => {
-            if (error) {
+            if (!error) {
+              router.push('/')
+            } else {
               setLoading(false)
               toast.error(error)
-            } else {
-              router.push('/')
             }
           })
         }
