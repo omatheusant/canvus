@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import LoadingDots from "@/components/shared/LoadingDots";
-import toast, {Toaster} from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 
@@ -10,31 +10,34 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  useEffect(() => {
+    router.refresh()
+  }, [])
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         setLoading(true);
         if (type === "login") {
-           signIn("credentials", {
+          signIn("credentials", {
             redirect: false,
             username: e.currentTarget.username.value,
             password: e.currentTarget.password.value,
             // @ts-ignore
-          }).then(({error})=>{
-            if(error){
+          }).then(({ error }) => {
+            if (error) {
               setLoading(false)
               toast.error(error)
             } else {
-              router.refresh()
               router.push('/')
             }
           })
-        } 
+        }
       }}
       className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
     >
-      <Toaster/>
+      <Toaster />
       <div>
         <label
           htmlFor="username"
@@ -71,8 +74,8 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
       <button
         disabled={loading}
         className={`${loading
-            ? "cursor-not-allowed border-gray-200 bg-gray-100"
-            : "border-black bg-black text-white hover:bg-white hover:text-black"
+          ? "cursor-not-allowed border-gray-200 bg-gray-100"
+          : "border-black bg-black text-white hover:bg-white hover:text-black"
           } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
       >
         {loading ? (
@@ -98,7 +101,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
           instead.
         </p>
       )}
-      
+
     </form>
   );
 }
