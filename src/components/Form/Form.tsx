@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react";
-import { signIn } from "next-auth/react";
+import {  useState } from "react";
+import { useSession, signIn } from "next-auth/react";
 import LoadingDots from "@/components/shared/LoadingDots";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 export const Form = ({ type }: { type: "login" | "register" }) => {
 
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { status } = useSession()
+
+  if(status === 'authenticated'){
+    router.push('/')
+  }
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        router.refresh()
         setLoading(true);
         if (type === "login") {
           signIn("credentials", {

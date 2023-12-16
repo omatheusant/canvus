@@ -25,12 +25,6 @@ export const authOptions = {
   pages: {
     signIn: '/auth/signin',
   },
-  theme: {
-    colorScheme: "auto",
-    brandColor: "#FFC100",
-    logo: "https://i.postimg.cc/cJnKqhgV/logo-ismafer.jpg",
-    buttonText: "#121113"
-  }
 }
 
 export default NextAuth(authOptions)
