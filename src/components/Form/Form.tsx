@@ -23,7 +23,6 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
             // @ts-ignore
           }).then(({ error }) => {
             if (!error) {
-              setLoading(false)
               router.push('/')
             } else {
               setLoading(false)
