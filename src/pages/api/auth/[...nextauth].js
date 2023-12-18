@@ -1,11 +1,18 @@
 import NextAuth from 'next-auth/next';
-import Credentials from 'next-auth/providers/credentials';
+import prisma from '@/lib/prisma';
+import { compare } from 'bcrypt';
+import CredentialsProvider from 'next-auth/providers/credentials'
 
 
 export const authOptions = {
   providers: [
-    Credentials({
-      name: "Credentials",
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        username: { label: 'username', type: 'text' },
+        password: { label: 'password', type: 'password'}
+        
+      },
       async authorize(credentials) {
         const user = { id: '1', name: 'Ismafer Ferramentas', username: 'ismafer', password: 'admin123' }
 
