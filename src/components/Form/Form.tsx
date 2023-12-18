@@ -5,6 +5,7 @@ import LoadingDots from "@/components/shared/LoadingDots";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
+import { useSession, UseSessionOptions } from 'next-auth/react';
 
 type FormInput = {
   username: string,
@@ -15,6 +16,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
 
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { data: session } = useSession()
 
   const {
     register,
@@ -31,14 +33,16 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
       callbackUrl: `${window.location.origin}`,
     })
     console.log(res)
-    if(res?.error) {
+    if (res?.error) {
       setLoading(false)
       toast.error(res.error)
     };
-    if(res?.ok) {
+    if (res?.ok) {
       router.refresh()
     }
-    router.push('/')
+    if (session) {
+      router.push('/')
+    }
   }
 
   return (
@@ -58,7 +62,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
           id="username"
           type="username"
           placeholder="Digite seu usuário..."
-          {...register("username", {required: true})}
+          {...register("username", { required: true })}
           autoComplete="username"
           required
           className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
