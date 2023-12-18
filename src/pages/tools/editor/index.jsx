@@ -23,13 +23,6 @@ const Editor = () => {
       width: size.width,
       backgroundColor: 'white'
     });
-
-    import('fabric-history')
-    .then(() => {
-      newCanvas.historyInit()
-    })
-    .catch(console.error);
-
     setCanvas(newCanvas);
   };
 
