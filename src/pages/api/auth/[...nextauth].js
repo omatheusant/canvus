@@ -1,10 +1,12 @@
 import NextAuth from 'next-auth/next';
-import prisma from '@/lib/prisma';
 import { compare } from 'bcrypt';
 import CredentialsProvider from 'next-auth/providers/credentials'
 
+import prisma from '@/lib/prisma';
+import { PrismaAdapter } from "@auth/prisma-adapter";
 
 export const authOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -14,16 +16,21 @@ export const authOptions = {
         
       },
       async authorize(credentials) {
-        const user = { id: '1', name: 'Ismafer Ferramentas', username: 'ismafer', password: 'admin123' }
-
-        if (user &&
-          user?.username === credentials?.username &&
-          user?.password === credentials?.password) {
-          return user
+        const {username, password } = credentials ?? {};
+        if (!username || !password) {
+          throw new Error("Usuário ou senha faltando!")
         }
-        throw new Error('Usuário ou senha inválido')
-      }
-    })
+        const user = await prisma.user.findUnique({
+          where: {
+            username,
+          },
+        });
+        if (!user || !(await compare(password, user.password))) {
+          throw new Error ("Usuário ou senha inválidos!")
+        }
+        return user
+      },
+    }),
   ],
 }
 
