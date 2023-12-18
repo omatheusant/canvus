@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
 
 import { fabric } from 'fabric';
-import 'fabric-history'
 
 import { Header } from '@/components/Editor/Header'
-import { SideBar } from '../../../components/Editor/SideBar';
-import { AddImage } from '../../../components/Editor/tools/AddImage';
-import { AddText } from '../../../components/Editor/tools/AddText';
-import { Resize } from '../../../components/Editor/tools/Resize';
-import { Background } from '../../../components/Editor/tools/Background';
-import { Eraser } from '../../../components/Editor/tools/Eraser';
+import { SideBar } from '@/components/Editor/SideBar';
+import { AddImage } from '@/components/Editor/tools/AddImage';
+import { AddText } from '@/components/Editor/tools/AddText';
+import { Resize } from '@/components/Editor/tools/Resize';
+import { Background } from '@/components/Editor/tools/Background';
+import { Eraser } from '@/components/Editor/tools/Eraser';
 
 const Editor = () => {
   const [canvas, setCanvas] = useState(null);
   const [size, setSize] = useState({ width: 1700, height: 1200 });
+  
   const initCanvas = () => {
     if (canvas) {
       canvas.dispose();
@@ -23,6 +23,13 @@ const Editor = () => {
       width: size.width,
       backgroundColor: 'white'
     });
+
+    import('fabric-history')
+    .then(() => {
+      newCanvas.historyInit()
+    })
+    .catch(console.error);
+
     setCanvas(newCanvas);
   };
 
@@ -45,16 +52,17 @@ const Editor = () => {
         if (!e.ctrlKey) {
           return;
         }
-  
+
         // Check pressed button is Z - Ctrl+Z.
         if (e.keyCode === 90) {
           canvas.undo();
         }
-  
+
         // Check pressed button is Y - Ctrl+Y.
         if (e.keyCode === 89) {
           canvas.redo();
         }
+
       };
 
      
