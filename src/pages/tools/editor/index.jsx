@@ -41,25 +41,7 @@ const Editor = () => {
             canvas.requestRenderAll();
           }
         }
-
-        if (!e.ctrlKey) {
-          return;
-        }
-
-        // Check pressed button is Z - Ctrl+Z.
-        if (e.keyCode === 90) {
-          canvas.undo();
-        }
-
-        // Check pressed button is Y - Ctrl+Y.
-        if (e.keyCode === 89) {
-          canvas.redo();
-        }
-
       };
-
-     
-
       window.addEventListener('keydown', handleKeyDown);
 
       return () => {
