@@ -30,7 +30,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
       redirect: false,
       callbackUrl: `${window.location.origin}`,
     })
-    console.debug(res)
+    console.log(res)
     if(res?.error) {
       setLoading(false)
       toast.error(res.error)
