@@ -9,7 +9,6 @@ import { AddText } from '@/components/Editor/tools/AddText';
 import { Resize } from '@/components/Editor/tools/Resize';
 import { Background } from '@/components/Editor/tools/Background';
 import { Eraser } from '@/components/Editor/tools/Eraser';
-
 const Editor = () => {
   const [canvas, setCanvas] = useState(null);
   const [size, setSize] = useState({ width: 1700, height: 1200 });
@@ -19,12 +18,17 @@ const Editor = () => {
     if (canvas) {
       canvas.dispose();
     }
-    const newCanvas = new fabric.Canvas('canvas', {
-      height: size.height,
-      width: size.width,
-      backgroundColor: 'white'
-    });
-    setCanvas(newCanvas);
+    if (typeof fabric !== undefined) {
+      import('fabric-history')
+      .then(()=>{
+        const newCanvas = new fabric.Canvas('canvas', {
+          height: size.height,
+          width: size.width,
+          backgroundColor: 'white'
+        });
+        setCanvas(newCanvas);
+      })
+    }
   };
 
   useEffect(() => {
@@ -41,6 +45,13 @@ const Editor = () => {
             canvas.remove(...activeObjects);
             canvas.requestRenderAll();
           }
+        }
+
+        if (e.ctrlKey && e.key === 'z') {
+          canvas.undo();
+        }
+        if (e.ctrlKey && e.key === 'y') {
+          canvas.redo();
         }
       };
       window.addEventListener('keydown', handleKeyDown);
