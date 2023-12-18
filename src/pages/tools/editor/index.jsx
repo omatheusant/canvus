@@ -13,6 +13,7 @@ import { Eraser } from '@/components/Editor/tools/Eraser';
 const Editor = () => {
   const [canvas, setCanvas] = useState(null);
   const [size, setSize] = useState({ width: 1700, height: 1200 });
+
   
   const initCanvas = () => {
     if (canvas) {
