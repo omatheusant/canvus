@@ -4,8 +4,8 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import LoadingDots from "@/components/shared/LoadingDots";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
-import { useSession, UseSessionOptions } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 
 type FormInput = {
   username: string,
@@ -14,14 +14,11 @@ type FormInput = {
 
 export const Form = ({ type }: { type: "login" | "register" }) => {
 
-  useEffect(()=>{
-    if(session) {
-      router.push('/')
-    }
-  }, [])
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { data: session } = useSession()
+  const { status } = useSession()
+
+  if (status === "authenticated") router.push('/')
 
   const {
     register,
@@ -34,8 +31,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
     const res = await signIn("credentials", {
       username: data.username,
       password: data.password,
-      redirect: false,
-      callbackUrl: `${window.location.origin}`,
+      redirect: false
     })
     console.log(res)
     if (res?.error) {
@@ -43,7 +39,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
       toast.error(res.error)
     };
     if (res?.ok) {
-      router.refresh()
+      router.reload()
     };
   }
 
