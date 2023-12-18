@@ -9,9 +9,9 @@ export function AddText({ canvas }) {
  const handleClick = () => {
  setIsAdding(!isAdding);
  if (!isAdding) {
- const text = new fabric.Textbox('Sample Text', {
-  left: 10,
-  top: 10,
+ const text = new fabric.Textbox('Lorem ipsum', {
+  left: 100,
+  top: 400,
   fill: 'black',
   fontSize: 50,
   width: 300,
