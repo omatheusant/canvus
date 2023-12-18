@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useForm, SubmitHandler } from "react-hook-form"
 import LoadingDots from "@/components/shared/LoadingDots";
@@ -14,6 +14,11 @@ type FormInput = {
 
 export const Form = ({ type }: { type: "login" | "register" }) => {
 
+  useEffect(()=>{
+    if(session) {
+      router.push('/')
+    }
+  }, [])
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { data: session } = useSession()
@@ -39,10 +44,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
     };
     if (res?.ok) {
       router.refresh()
-    }
-    if (session) {
-      router.push('/')
-    }
+    };
   }
 
   return (
