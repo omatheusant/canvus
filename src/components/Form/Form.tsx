@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import LoadingDots from "@/components/shared/LoadingDots";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 type FormInput = {
   username: string,
@@ -35,7 +35,10 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
       setLoading(false)
       toast.error(res.error)
     };
-    if(res?.url) router.push('/')
+    if(res?.ok) {
+      router.refresh()
+    }
+    router.push('/')
   }
 
   return (
