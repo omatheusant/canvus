@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useForm, SubmitHandler } from "react-hook-form"
-import LoadingDots from "@/components/shared/LoadingDots";
-import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+
+import toast, { Toaster } from "react-hot-toast";
+import LoadingDots from "@/components/shared/LoadingDots";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 type FormInput = {
   username: string,
@@ -15,7 +18,10 @@ type FormInput = {
 export const Form = ({ type }: { type: "login" | "register" }) => {
 
   const [loading, setLoading] = useState(false);
+  const [isPasswordShow, setIsPasswordShow] = useState(false);
+
   const router = useRouter();
+
   const { status } = useSession()
 
   if (status === "authenticated") router.push('/')
@@ -54,7 +60,7 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
           htmlFor="username"
           className="block text-xs text-[--dark] uppercase"
         >
-          Nome de Usuário
+          Usuário
         </label>
         <input
           id="username"
@@ -66,21 +72,25 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
           className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
         />
       </div>
-      <div>
+      <div className='relative'>
         <label
           htmlFor="password"
           className="block text-xs text-[--dark] uppercase"
         >
-          Password
+          Senha
         </label>
         <input
           id="password"
-          type="password"
+          type={isPasswordShow ? 'text' : 'password' }
           placeholder="Digite sua senha..."
           {...register("password", { required: true })}
           required
           className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
         />
+        <div className={`absolute right-2 bottom-[0.7rem] cursor-pointer`} onClick={()=>setIsPasswordShow(!isPasswordShow)}>
+          <FaEye className={isPasswordShow ? 'visible' : 'invisible'}/>
+          <FaEyeSlash className={isPasswordShow ? 'invisible absolute' : 'visible'}/>
+        </div>
       </div>
       <button
         disabled={loading}
