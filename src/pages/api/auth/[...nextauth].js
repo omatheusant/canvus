@@ -12,11 +12,11 @@ export const authOptions = {
       name: "credentials",
       credentials: {
         username: { label: 'username', type: 'text' },
-        password: { label: 'password', type: 'password'}
-        
+        password: { label: 'password', type: 'password' }
+
       },
       async authorize(credentials) {
-        const {username, password } = credentials ?? {};
+        const { username, password } = credentials ?? {};
         if (!username || !password) {
           throw new Error("Usuário ou senha faltando!")
         }
@@ -25,13 +25,17 @@ export const authOptions = {
             username,
           },
         });
-        if (!user || !(await compare(password, user.password))) {
-          throw new Error ("Usuário ou senha inválidos!")
+        if (user.password === password) {
+          return user
         }
-        return user
+        throw new Error('Invalid credentials');
       },
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 }
 
 export default NextAuth(authOptions)
