@@ -1,26 +1,40 @@
 import NextAuth from 'next-auth/next';
-import CredentialsProvider from 'next-auth/providers/credentials';
+import CredentialsProvider from 'next-auth/providers/credentials'
 
+import prisma from '@/lib/prisma';
+import { PrismaAdapter } from "@auth/prisma-adapter";
 
 export const authOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
-      name: "Credentials",
-      async authorize(credentials) {
-        const user = { id: '1', name: 'Ismafer Ferramentas', username: 'ismafer', password: 'admin123' }
+      name: "credentials",
+      credentials: {
+        username: { label: 'username', type: 'text' },
+        password: { label: 'password', type: 'password' }
 
-        if (user &&
-          user?.username === credentials?.username &&
-          user?.password === credentials?.password) {
+      },
+      async authorize(credentials) {
+        const { username, password } = credentials ?? {};
+        if (!username || !password) {
+          throw new Error("Usuário ou senha faltando!")
+        }
+        const user = await prisma.user.findUnique({
+          where: {
+            username,
+          },
+        });
+        if (user.password === password) {
           return user
         }
-        throw new Error('Usuário ou senha inválido')
-      }
-    })
+        throw new Error('Invalid credentials');
+      },
+    }),
   ],
-  pages: {
-    signIn: '/login'
-  }
+  session: {
+    strategy: "jwt",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 }
 
 export default NextAuth(authOptions)
