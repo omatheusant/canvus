@@ -2,6 +2,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { FaSignOutAlt } from "react-icons/fa"
 
 import Link from 'next/link';
+import { AdminMenu } from '@/components/Admin/AdminMenu';
 
 export default function Home() {
   const {data: session} = useSession()
@@ -9,6 +10,11 @@ export default function Home() {
   if (session?.user) {
     return (
       <main className="hero min-h-screen font-medium">
+        {session.user.role === "admin" && (
+          <div className='absolute left-2 top-2'>
+            <AdminMenu/>
+          </div>
+        )}
         <div className="hero-content text-center">
           <div className="max-w-md flex flex-col justify-center">
             <img src={'https://i.postimg.cc/d12jqFhK/logo-ismafer-rem.png'} alt='logo' width={300} className="self-center" />
