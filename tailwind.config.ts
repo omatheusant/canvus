@@ -10,7 +10,6 @@ const config: Config = {
   plugins: [require("daisyui")],
   daisyui: {
     base: false,
-    styled: false
   }
 }
 export default config

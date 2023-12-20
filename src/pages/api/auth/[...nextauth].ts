@@ -1,10 +1,11 @@
 import NextAuth from 'next-auth/next';
+import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 import prisma from '@/lib/prisma';
-import { PrismaAdapter } from "@auth/prisma-adapter";
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
@@ -24,7 +25,7 @@ export const authOptions = {
             username,
           },
         });
-        if (user.password === password) {
+        if (user?.password === password) {
           return user
         }
         throw new Error('Invalid credentials');
@@ -32,22 +33,21 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    session: async ({ session, token }) => {
-      if (session?.user) {
-        session.user.id = token.sub;
-      }
-      return session;
+    async jwt ({token, user}) {
+      if(user) token.role = user.role
+      return token
     },
-    jwt: async ({ user, token }) => {
-      if (user) {
-        token.uid = user.id;
-      }
-      return token;
-    },
+    async session({session, token}) {
+      if(session?.user) session.user.role = token.role
+      return session
+    }
   },
   session: {
     strategy: "jwt",
   },
+  pages: {
+    signIn: '/login'
+  }
 }
 
 export default NextAuth(authOptions)
