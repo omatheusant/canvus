@@ -1,12 +1,11 @@
-import { signOut, useSession } from 'next-auth/react';
+import { getSession, signOut, useSession } from 'next-auth/react';
 import { FaSignOutAlt } from "react-icons/fa"
 
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Home() {
-  const { data: session } = useSession()
-
+  const { data: session } = useSession();
   if (session) {
     return (
       <main className="hero min-h-screen font-medium">

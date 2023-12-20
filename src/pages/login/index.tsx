@@ -22,7 +22,7 @@ const SignIn = () => {
             Use suas credenciais para fazer o login
           </p>
         </div>
-        <Form type='login'/>
+        <Form />
       </div>
     </div>
   )

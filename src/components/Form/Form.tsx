@@ -15,7 +15,7 @@ type FormInput = {
   password: string
 }
 
-export const Form = ({ type }: { type: "login" | "register" }) => {
+export const Form = () => {
 
   const [loading, setLoading] = useState(false);
   const [isPasswordShow, setIsPasswordShow] = useState(false);
@@ -102,27 +102,9 @@ export const Form = ({ type }: { type: "login" | "register" }) => {
         {loading ? (
           <LoadingDots color="#808080" />
         ) : (
-          <p>{type === "login" ? "Entrar" : "Sign Up"}</p>
+          <p>Entrar</p>
         )}
       </button>
-      {type === "login" ? (
-        <p className="text-center text-sm text-gray-600">
-          Don&apos;t have an account?{" "}
-          <Link href="/register" className="font-semibold text-gray-800">
-            Sign up
-          </Link>{" "}
-          for free.
-        </p>
-      ) : (
-        <p className="text-center text-sm text-gray-600">
-          Already have an account?{" "}
-          <Link href="/login" className="font-semibold text-gray-800">
-            Sign in
-          </Link>{" "}
-          instead.
-        </p>
-      )}
-
     </form>
   );
 }
