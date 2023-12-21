@@ -97,8 +97,8 @@ export const CreateUser = () => {
                   id='role'
                   value={userInfo.role}
                   onChange={handleChange}
-                  placeholder='Digite o a senha...'
-                  type='password' />
+                  placeholder='Digite o cargo...'
+                  type='text' />
               </div>
               <button
                 disabled={loading}
