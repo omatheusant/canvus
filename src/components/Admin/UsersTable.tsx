@@ -1,23 +1,17 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 
-export const UsersTable = () => {
-  const users = [
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-    { name: 'John Doe', username: 'johndoe', role: 'user' },
-  ]
+interface User {
+  name: string;
+  username: string;
+  role: string;
+}
+
+interface UserTableProps {
+  users: User[]
+}
+
+export const UsersTable = ({users}: UserTableProps) => {
   return (
     <div className="overflow-x-auto flex justify-center">
       <table className="table flex w-full">

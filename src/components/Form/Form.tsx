@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
 import toast, { Toaster } from "react-hot-toast";
-import LoadingDots from "@/components/shared/LoadingDots";
+import LoadingDots from "@/components/shared/Loading/LoadingDots";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
