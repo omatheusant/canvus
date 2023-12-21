@@ -6,7 +6,7 @@ import { AdminMenu } from '@/components/Admin/AdminMenu';
 
 export default function Home() {
   const {data: session} = useSession()
-
+  console.log(session?.user)
   if (session?.user) {
     return (
       <main className="hero min-h-screen font-medium">

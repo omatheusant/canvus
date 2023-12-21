@@ -1,5 +1,6 @@
 import { CreateUser } from '@/components/Admin/CreateUser';
 import { UsersTable } from '@/components/Admin/UsersTable';
+import GetUsers from '@/services/getUsers';
 import { useSession } from 'next-auth/react'
 import Link from 'next/link';
 import { ChangeEvent, useState } from 'react';
@@ -13,32 +14,17 @@ type UsersList = {
   role: string
 }[]
 
+
+
 const AdminPage = () => {
   const { data: session } = useSession();
   const [searchValue, setSearchValue] = useState('');
 
+  let users: UsersList = GetUsers()
 
   if (session?.user.role !== 'admin') {
     return (<>Acesso negado!</>)
   }
-
-  const users: UsersList = [
-    { name: 'John Doe', username: 'johndoe1', role: 'admin' },
-    { name: 'Alice Smith', username: 'alicesmith', role: 'editor' },
-    { name: 'Bob Johnson', username: 'bobjohnson', role: 'user' },
-    { name: 'Emily Davis', username: 'emilydavis', role: 'user' },
-    { name: 'Michael Brown', username: 'michaelbrown', role: 'admin' },
-    { name: 'Olivia Garcia', username: 'oliviagarcia', role: 'editor' },
-    { name: 'William Wilson', username: 'williamwilson', role: 'user' },
-    { name: 'Sophia Martinez', username: 'sophiamartinez', role: 'user' },
-    { name: 'Daniel Anderson', username: 'danielanderson', role: 'admin' },
-    { name: 'Ava Taylor', username: 'avataylor', role: 'editor' },
-    { name: 'Ethan Thomas', username: 'ethanthomas', role: 'user' },
-    { name: 'Mia Hernandez', username: 'miahernandez', role: 'user' },
-    { name: 'Alexander Miller', username: 'alexandermiller', role: 'admin' },
-    { name: 'Chloe Jackson', username: 'chloejackson', role: 'editor' },
-    { name: 'James White', username: 'jameswhite', role: 'user' }
-  ];
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);

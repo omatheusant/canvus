@@ -1,5 +1,5 @@
-import { FaTrashAlt } from "react-icons/fa";
-import { FaEdit } from "react-icons/fa";
+import { DeleteUser } from './DeleteUser';
+import { UpdateUser } from './UpdateUser';
 
 interface User {
   name: string;
@@ -11,7 +11,7 @@ interface UserTableProps {
   users: User[]
 }
 
-export const UsersTable = ({users}: UserTableProps) => {
+export const UsersTable = ({ users }: UserTableProps) => {
   return (
     <div className="overflow-x-auto flex justify-center">
       <table className="table flex w-full">
@@ -32,8 +32,8 @@ export const UsersTable = ({users}: UserTableProps) => {
                   <td>{user.username}</td>
                   <td>{user.role}</td>
                   <td className='flex text-[15px] gap-3'>
-                    <FaTrashAlt/>
-                    <FaEdit/> 
+                    <DeleteUser user={user} />
+                    <UpdateUser user={user} />
                   </td>
                 </tr>
               )
