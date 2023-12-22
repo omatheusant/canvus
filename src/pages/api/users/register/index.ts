@@ -2,21 +2,16 @@ import { NextResponse } from 'next/server';
 import { hash } from 'bcrypt';
 import prisma from '@/lib/prisma';
 import { NextApiResponse } from 'next';
+import { UserBody } from '@/types/users';
 
-interface userProps extends ReadableStream<Uint8Array> {
-  name: string,
-  username: string,
-  password: string,
-  role: string
-}
 
 export default async function handler(req: Request, res: NextApiResponse) {
   if (req.method === 'POST') {
-    const body = req.body as userProps
+    const body = req.body as UserBody
     
     const exists = await prisma.user.findUnique({
       where: {
-        username: body.username
+        username: body?.username
       }
     })
 

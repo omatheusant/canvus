@@ -28,7 +28,7 @@ export const CreateUser = () => {
     event.preventDefault()
     setLoading(true)
     axios
-      .post("/api/register", userInfo)
+      .post("/api/users/register", userInfo)
       .then(() => {
         toast.success("Conta criada com sucesso!")
         router.reload()

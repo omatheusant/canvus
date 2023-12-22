@@ -4,7 +4,7 @@ import { Modal } from '../shared/Modal/Modal';
 
 export const UpdateUser = ({user}: any) => {
   return (
-    <Modal className="btn bg-[--bg-color] hover:bg-[--dark] border-none text-[#8884FF]" title={(<FaEdit size={20}/>)}>
+    <Modal id="update" className="btn bg-[--bg-color] hover:bg-[--dark] border-none text-[#8884FF]" title={(<FaEdit size={20}/>)}>
       a
     </Modal>
   )
