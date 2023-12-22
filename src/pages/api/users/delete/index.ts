@@ -8,11 +8,11 @@ export default async function handler(req: any, res: NextApiResponse) {
 
   const body = req.body as UserBody
 
-  const deleteUsers = await prisma?.user.delete({
+  const deleteUser = await prisma?.user.delete({
     where: {
       username: body.username
     }
   })
   res.status(200).send({message: 'Usuário deletado com sucesso!'})
-  res.send(deleteUsers)
+  res.send(deleteUser)
 }
