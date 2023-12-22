@@ -10,7 +10,7 @@ export default async function handler(req: any, res: NextApiResponse) {
     res.status(400).send('BAD REQUEST')
   };
 
-  const user = req.body as AtualUser
+  const user = await req.body as AtualUser
 
   const updateUser = await prisma?.user.update({
     where: {
