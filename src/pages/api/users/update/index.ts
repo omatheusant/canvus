@@ -1,6 +1,5 @@
 import { UserBody } from '@/types/users';
 import { NextApiResponse } from 'next';
-import { NextResponse } from 'next/server';
 
 interface AtualUser extends UserBody {
   atualUser: string
@@ -24,5 +23,5 @@ export default async function handler(req: any, res: NextApiResponse) {
     }
   })
 
-  NextResponse.json(updateUser)
+  res.send(updateUser) 
 }
