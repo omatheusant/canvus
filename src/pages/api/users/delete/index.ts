@@ -13,6 +13,5 @@ export default async function handler(req: any, res: NextApiResponse) {
       username: body.username
     }
   })
-  res.status(200).send({message: 'Usuário deletado com sucesso!'})
   res.send(deleteUser)
 }

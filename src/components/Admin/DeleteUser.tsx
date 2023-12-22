@@ -14,8 +14,8 @@ export const DeleteUser = ({ user }: any) => {
     setLoading(true)
     axios
       .post('/api/users/delete', user)
-      .then((res)=>{
-        toast.success(res.data.message)
+      .then(()=>{
+        toast.success("Usuário removido com sucesso!")
       })
       .catch((error) => {
         setLoading(false)
