@@ -126,27 +126,27 @@ const ImageCutter = () => {
 
   return (
     <div className="flex flex-col justify-center items-center max-w-xl mx-auto p-4">
-      <div className="w-full flex justify-center mb-10">
-        <img src={'https://i.postimg.cc/cJnKqhgV/logo-ismafer.jpg'} alt='logo' width={200} />
+      <div className="w-full flex justify-center mb-10 mt-10 text-secondary">
+      <h1 className='italic text-6xl text-secondary'>Canvus</h1>
       </div>
-      <h1 className="text-3xl font-bold text-[--brand] mb-7">Cortador de Imagens</h1>
+      <h1 className="text-3xl font-bold text-secondary mb-7">Cortador de Imagens</h1>
       <input
         type="file"
         onChange={handleImageUpload}
         accept="image/*"
-        className="rounded p-2 mb-4 bg-[--dark] text-[--light]"
+        className="rounded p-2 mb-4 bg-secondary"
       />
       <select
-        className="select w-full max-w-xs bg-[--dark] text-[--light] font-bold text-base mb-4"
+        className="select w-full max-w-xs font-bold text-base mb-4"
         value={selectedSize}
         onChange={(e) => setSelectedSize(e.target.value)}
       >
-        <option value="1200x1200">1200x1200</option>
-        <option value="1700x1200">1700x1200</option>
+        <option value="1200x1200">{'1200x1200 (Shopee)'}</option>
+        <option value="1700x1200">{'1700x1200 (Mercado Livre)'}</option>
       </select>
       <button
         onClick={handleImageProcessing}
-        className="btn bg-[--brand] text-[--bg-color]  hover:bg-orange-400"
+        className="btn bg-primary text-secondary"
       >
         Cortar Imagens
       </button>
@@ -173,11 +173,11 @@ const ImageCutter = () => {
 
       <button
         onClick={handleDownloadImages}
-        className="btn bg-[--brand] hover:bg-orange-500 font-bold py-2 px-4 rounded mt-4 fixed bottom-10 right-10 text-[--dark]"
+        className="btn bg-primary font-bold py-2 px-4 rounded mt-4 fixed bottom-10 right-10 text-secondary"
       >
         <MdFileDownload size='20px' />
       </button>
-      <Link href={'/'} className='absolute left-5 top-5 text-[--brand] cursor-pointer'>
+      <Link href={'/'} className='absolute left-5 top-5 text-secondary cursor-pointer'>
         <IoChevronBackSharp size='50px' />
       </Link>
     </div>

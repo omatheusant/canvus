@@ -10,8 +10,7 @@ export function AddText({ canvas }) {
  setIsAdding(!isAdding);
  if (!isAdding) {
  const text = new fabric.Textbox('Lorem ipsum', {
-  left: 100,
-  top: 400,
+  
   fill: 'black',
   fontSize: 50,
   width: 300,

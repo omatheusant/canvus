@@ -11,7 +11,7 @@ import { Background } from '@/components/Editor/tools/Background';
 import { Eraser } from '@/components/Editor/tools/Eraser';
 const Editor = () => {
   const [canvas, setCanvas] = useState(null);
-  const [size, setSize] = useState({ width: 1700, height: 1200 });
+  const [size, setSize] = useState({ width: 600, height: 400 });
 
 
   const initCanvas = () => {
@@ -30,7 +30,7 @@ const Editor = () => {
         })
     }
   };
-  
+
   var _clipboard = null;
 
   const copy = () => {

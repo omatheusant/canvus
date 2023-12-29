@@ -4,17 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bg-color: #191919;
-  --brand: #FFC100;
-  --dark: #121113;
-  --light: #fdfdfd;
-  --opaque:#19191979;
-  --bg-dark: #131313;
-  --alert: #BB342F
-
-}
-
 * {
   font-family: 'Saira', sans-serif;
   margin: 0;
@@ -23,6 +12,6 @@
 
 body {
 min-height: 100vh;
-background: #1A1A1A;
-background: radial-gradient(at center, #1A1A1A, #010101);  overflow-x: hidden;
+background: #F5F1ED;
+background: radial-gradient(at center, #f8f8fa, #e7e7e7);  overflow-x: hidden;
 }

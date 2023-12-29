@@ -9,6 +9,17 @@ const config: Config = {
   theme: {},
   plugins: [require("daisyui")],
   daisyui: {
+    themes: [
+      {
+        light: {
+          "primary": "#FBFBFF",
+          "secondary": "#07101",
+          "info": "#FF5400",
+          "success": "#C2E812",
+          "error": "#721817",
+        },
+      },
+    ],
     base: false,
   }
 }
