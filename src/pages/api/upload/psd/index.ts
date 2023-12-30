@@ -1,6 +1,14 @@
+import 'ag-psd/initialize-canvas'
+
 import { NextApiRequest, NextApiResponse } from 'next';
 import { readPsd, Layer } from 'ag-psd';
 import {fabric} from 'fabric'
+
+export const config = {
+  api: {
+    responseLimit: '10mb',
+  },
+}
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -28,7 +36,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       const images = convertLayersToImages(psd.children || []);
 
       // Exemplo: Enviar imagens como resposta
-      res.status(200).send({images});
+      res.status(200).json({ success: true, images });
     } else {
       // Método HTTP não permitido
       res.status(405).json({ error: 'Method Not Allowed' });

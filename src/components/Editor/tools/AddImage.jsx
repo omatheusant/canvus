@@ -6,7 +6,7 @@ export const AddImage = ({ canvas }) => {
   const handleImage = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      if(file.name.endsWith('.psd')) {
+      if (file.name.endsWith('.psd')) {
         console.log('PSD detected!')
         console.log(file)
         try {
@@ -18,6 +18,8 @@ export const AddImage = ({ canvas }) => {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
+            maxContentLength: Infinity,
+            maxBodyLength: Infinity,
           });
           console.log('PSD uploaded successfully:', response.data);
         } catch (error) {
@@ -46,18 +48,18 @@ export const AddImage = ({ canvas }) => {
         });
       }
     }
-   }
+  }
 
 
- return (
-  <li className='text-[--light] text-[1vw]'>
-  <div className='flex flex-col items-center cursor-pointer'>
-    <label className='flex flex-col items-center cursor-pointer' htmlFor="file_input">
-      <FaCloudUploadAlt className='text-[2vw]' />
-      Uploads
-    </label>
-    <input className='hidden' id="file_input" type="file" onChange={handleImage} />
-  </div>
-</li>
- );
+  return (
+    <li className='text-[--light] text-[1vw]'>
+      <div className='flex flex-col items-center cursor-pointer'>
+        <label className='flex flex-col items-center cursor-pointer' htmlFor="file_input">
+          <FaCloudUploadAlt className='text-[2vw]' />
+          Uploads
+        </label>
+        <input className='hidden' id="file_input" type="file" onChange={handleImage} />
+      </div>
+    </li>
+  );
 }
