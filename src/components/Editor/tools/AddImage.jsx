@@ -14,12 +14,10 @@ export const AddImage = ({ canvas }) => {
           const formData = new FormData();
           formData.append('file', file);
 
-          const response = await axios.post('/api/upload/psd', formData, {
+          const response = await axios.post('url_do_servidor', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
-            maxContentLength: Infinity,
-            maxBodyLength: Infinity,
           });
           console.log('PSD uploaded successfully:', response.data);
         } catch (error) {

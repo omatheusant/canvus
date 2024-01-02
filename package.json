@@ -16,7 +16,6 @@
     "@imgly/background-removal": "^1.2.1",
     "@next-auth/prisma-adapter": "^0.4.4-canary.81",
     "@prisma/client": "^5.7.1",
-    "ag-psd": "^19.0.0",
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
     "fabric": "^5.3.0",

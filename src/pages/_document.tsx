@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html data-theme="light" lang="en">
       <Head />
-      <body>
+      <body className='bg-gradient-radial from-primary to-accent'>
         <Main />
         <NextScript />
       </body>

@@ -11,7 +11,7 @@
 }
 
 body {
-min-height: 100vh;
-background: #F5F1ED;
-background: radial-gradient(at center, #f8f8fa, #e7e7e7);  overflow-x: hidden;
+  min-height: 100vh;
+  background: #F5F1ED;
+  overflow-x: hidden;
 }
